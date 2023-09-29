@@ -332,6 +332,88 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <2>;
+
+			pca9539@74 {
+				compatible = "nxp,pca9539";
+				reg = <0x74>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				gpio-line-names = "", "", "", "",
+					"PLUG_DETECT_PCIE_J101_N",
+					"PLUG_DETECT_PCIE_J102_N",
+					"PLUG_DETECT_PCIE_J103_N",
+					"PLUG_DETECT_PCIE_J104_N",
+					"PLUG_DETECT_PCIE_J105_N",
+					"PLUG_DETECT_PCIE_J106_N",
+					"PLUG_DETECT_PCIE_J107_N",
+					"PLUG_DETECT_PCIE_J108_N",
+					"PLUG_DETECT_M2_SSD1_N",
+					"PLUG_DETECT_NIC1_N",
+					"SEL_SMB_DIMM_CPU0",
+					"PSU3_PRESENT_N",
+					"PSU4_PRESENT_N",
+					"", "",
+					"PWRBRD_PLUG_DETECT2_N";
+			};
+
+			pca9539@75 {
+				compatible = "nxp,pca9539";
+				reg = <0x75>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				gpio-line-names = "", "", "", "",
+					"PLUG_DETECT_PCIE_J109_N",
+					"PLUG_DETECT_PCIE_J110_N",
+					"PLUG_DETECT_PCIE_J111_N",
+					"PLUG_DETECT_PCIE_J112_N",
+					"PLUG_DETECT_PCIE_J113_N",
+					"PLUG_DETECT_PCIE_J114_N",
+					"PLUG_DETECT_PCIE_J115_N",
+					"PLUG_DETECT_PCIE_J116_N",
+					"PLUG_DETECT_M2_SSD2_N",
+					"PLUG_DETECT_NIC2_N",
+					"SEL_SMB_DIMM_CPU1",
+					"PSU1_PRESENT_N",
+					"PSU2_PRESENT_N",
+					"", "",
+					"PWRBRD_PLUG_DETECT1_N";
+			};
+
+			pca9539@76 {
+				compatible = "nxp,pca9539";
+				reg = <0x76>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				gpio-line-names = "", "", "", "",
+					"SW1_BOOTRCVRYB1_N",
+					"SW1_BOOTRCVRYB0_N",
+					"SW2_BOOTRCVRYB1_N",
+					"SW2_BOOTRCVRYB0_N",
+					"SW3_4_BOOTRCVRYB1_N",
+					"SW3_4_BOOTRCVRYB0_N",
+					"SW5_BOOTRCVRYB1_N",
+					"SW5_BOOTRCVRYB0_N",
+					"SW6_BOOTRCVRYB1_N",
+					"SW6_BOOTRCVRYB0_N",
+					"SW1_RESET_N",
+					"SW3_RESET_N",
+					"SW4_RESET_N",
+					"SW2_RESET_N",
+					"SW5_RESET_N",
+					"SW6_RESET_N";
+			};
 		};
 
 		i2c3mux0chn3: i2c@3 {
@@ -369,6 +451,49 @@
 &i2c6 {
 	status = "okay";
 
+	max31785@52 {
+		compatible = "maxim,max31785a";
+		reg = <0x52>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		fan0: fan@0 {
+			compatible = "pmbus-fan";
+			reg = <0>;
+			tach-pulses = <2>;
+		};
+
+		fan1: fan@1 {
+			compatible = "pmbus-fan";
+			reg = <1>;
+			tach-pulses = <2>;
+		};
+	};
+
+	eeprom@55 {
+		compatible = "atmel,24c64";
+		reg = <0x55>;
+	};
+
+	max31785@54 {
+		compatible = "maxim,max31785a";
+		reg = <0x54>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		fan2: fan@0 {
+			compatible = "pmbus-fan";
+			reg = <0>;
+			tach-pulses = <2>;
+		};
+
+		fan3: fan@1 {
+			compatible = "pmbus-fan";
+			reg = <1>;
+			tach-pulses = <2>;
+		};
+	};
+
 	tca9548@70 {
 		compatible = "nxp,pca9548";
 		reg = <0x70>;
@@ -405,6 +530,69 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <4>;
+
+			humidity-sensor@40 {
+				compatible = "ti,hdc1080";
+				reg = <0x40>;
+			};
+
+			tmp275@48 {
+				compatible = "ti,tmp275";
+				reg = <0x48>;
+			};
+
+			eeprom@50 {
+				compatible = "atmel,24c32";
+				reg = <0x50>;
+			};
+
+			pca9551@60 {
+				compatible = "nxp,pca9551";
+				reg = <0x60>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				led@0 {
+					label = "enclosure-id-led";
+					reg = <0>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@1 {
+					label = "attention-led";
+					reg = <1>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@2 {
+					label = "enclosure-fault-rollup-led";
+					reg = <2>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@3 {
+					label = "power-on-led";
+					reg = <3>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+			};
+
+			dps: dps310@76 {
+				compatible = "infineon,dps310";
+				reg = <0x76>;
+				#io-channel-cells = <0>;
+			};
 		};
 
 		i2c6mux0chn5: i2c@5 {
@@ -424,6 +612,60 @@
 			#size-cells = <0>;
 			reg = <7>;
 		};
+	};
+
+	pca9539@74 {
+		compatible = "nxp,pca9539";
+		reg = <0x74>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		gpio-controller;
+		#gpio-cells = <2>;
+
+		gpio-line-names = "", "", "", "",
+			"NVMED0_RESET_N",
+			"NVMED1_RESET_N",
+			"NVMED2_RESET_N",
+			"NVMED3_RESET_N",
+			"",
+			"FAN0_FLT_LED_R_N",
+			"FAN1_FLT_LED_R_N",
+			"FAN2_FLT_LED_R_N",
+			"FAN3_FLT_LED_R_N",
+			"FAN4_FLT_LED_R_N",
+			"FAN5_FLT_LED_R_N",
+			"FAN6_FLT_LED_R_N",
+			"",
+			"FAN_CNTRLR0_RST_N",
+			"FAN_CNTRLR1_RST_N";
+	};
+
+	pca9539@77 {
+		compatible = "nxp,pca9539";
+		reg = <0x77>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		gpio-controller;
+		#gpio-cells = <2>;
+
+		gpio-line-names = "", "", "", "",
+			"PE_NVMED0_EXP_PRSNT_N",
+			"PE_NVMED1_EXP_PRSNT_N",
+			"PE_NVMED2_EXP_PRSNT_N",
+			"PE_NVMED3_EXP_PRSNT_N",
+			"LED_FAULT_NVMED0",
+			"LED_FAULT_NVMED1",
+			"LED_FAULT_NVMED2",
+			"LED_FAULT_NVMED3",
+			"FAN0_PRESENCE_R_N",
+			"FAN1_PRESENCE_R_N",
+			"FAN2_PRESENCE_R_N",
+			"FAN3_PRESENCE_R_N",
+			"FAN4_PRESENCE_R_N",
+			"FAN5_PRESENCE_N",
+			"FAN6_PRESENCE_N";
 	};
 };
 
@@ -527,6 +769,34 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <4>;
+
+			pca9539@75 {
+				compatible = "nxp,pca9539";
+				reg = <0x75>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				gpio-line-names = "", "", "", "",
+					"EFUSE_12V_SLOTS_N",
+					"EFUSE_3P3V_SLOTS_N",
+					"",
+					"NIC2_PERST_N",
+					"PCIE_J109_PERST_N",
+					"PCIE_J110_PERST_N",
+					"PCIE_J111_PERST_N",
+					"PCIE_J112_PERST_N",
+					"PCIE_J113_PERST_N",
+					"PCIE_J114_PERST_N",
+					"PCIE_J115_PERST_N",
+					"PCIE_J116_PERST_N",
+					"PV_CP1_P_SW2STK4_PERST_N",
+					"PV_CP1_P_SW2STK5_PERST_N",
+					"PE_CP_P_DRV2_PERST1_B",
+					"PE_CP_P_DRV3_PERST1_B";
+			};
 		};
 
 		i2c8mux0chn5: i2c@5 {
@@ -649,6 +919,34 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <4>;
+
+			pca9539@74 {
+				compatible = "nxp,pca9539";
+				reg = <0x74>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				gpio-controller;
+				#gpio-cells = <2>;
+
+				gpio-line-names = "", "", "", "",
+					"NIC1_PERST_N",
+					"BMC_PERST_N",
+					"RST_M2_SSD1_2_PERST_N",
+					"PCIE_J101_PERST_N",
+					"PCIE_J102_PERST_N",
+					"PCIE_J103_PERST_N",
+					"PCIE_J104_PERST_N",
+					"PCIE_J105_PERST_N",
+					"PCIE_J106_PERST_N",
+					"PCIE_J107_PERST_N",
+					"PCIE_J108_PERST_N",
+					"PV_CP0_P_SW1STK4_PERST_N",
+					"PV_CP0_P_SW1STK5_PERST_N",
+					"PE_CP_P_DRV0_PERST1_B",
+					"PE_CP_P_DRV1_PERST1_B",
+					"LOM_PERST_N";
+			};
 		};
 
 		i2c15mux0chn5: i2c@5 {
