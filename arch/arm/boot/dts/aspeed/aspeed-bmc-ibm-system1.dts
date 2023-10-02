@@ -49,6 +49,26 @@
 			reg = <0xbf000000 0x01000000>;  /* 16M */
 		};
 	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		bmc-ready {
+			gpios = <&gpio0 ASPEED_GPIO(L, 7) GPIO_ACTIVE_LOW>;
+		};
+
+		bmc-hb {
+			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
+		};
+
+		rear-enc-fault0 {
+			gpios = <&gpio0 ASPEED_GPIO(S, 6) GPIO_ACTIVE_LOW>;
+		};
+
+		rear-enc-id0 {
+			gpios = <&gpio0 ASPEED_GPIO(S, 7) GPIO_ACTIVE_LOW>;
+		};
+	};
 };
 
 &adc1 {
