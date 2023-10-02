@@ -501,15 +501,15 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		fan2: fan@0 {
+		fan2: fan@2 {
 			compatible = "pmbus-fan";
-			reg = <0>;
+			reg = <2>;
 			tach-pulses = <2>;
 		};
 
-		fan3: fan@1 {
+		fan3: fan@3 {
 			compatible = "pmbus-fan";
-			reg = <1>;
+			reg = <3>;
 			tach-pulses = <2>;
 		};
 	};
