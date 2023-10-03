@@ -54,20 +54,96 @@
 		compatible = "gpio-leds";
 
 		bmc-ready {
-			gpios = <&gpio0 ASPEED_GPIO(L, 7) GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 ASPEED_GPIO(L, 7) GPIO_ACTIVE_HIGH>;
 		};
 
 		bmc-hb {
-			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_HIGH>;
 		};
 
 		rear-enc-fault0 {
-			gpios = <&gpio0 ASPEED_GPIO(S, 6) GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 ASPEED_GPIO(S, 6) GPIO_ACTIVE_HIGH>;
 		};
 
 		rear-enc-id0 {
-			gpios = <&gpio0 ASPEED_GPIO(S, 7) GPIO_ACTIVE_LOW>;
+			gpios = <&gpio0 ASPEED_GPIO(S, 7) GPIO_ACTIVE_HIGH>;
 		};
+	};
+
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		poll-interval = <1000>;
+
+		event-nvme1-presence {
+			label = "nvme1-presence";
+			gpios = <&pca0 0 GPIO_ACTIVE_LOW>;
+			linux,code = <0>;
+		};
+
+		event-nvme2-presence {
+			label = "nvme2-presence";
+			gpios = <&pca0 1 GPIO_ACTIVE_LOW>;
+			linux,code = <1>;
+		};
+
+		event-nvme3-presence {
+			label = "nvme3-presence";
+			gpios = <&pca0 2 GPIO_ACTIVE_LOW>;
+			linux,code = <2>;
+		};
+
+		event-nvme4-presence {
+			label = "nvme4-presence";
+			gpios = <&pca0 3 GPIO_ACTIVE_LOW>;
+			linux,code = <3>;
+		};
+
+		event-fan0-presence {
+			label = "fan0-presence";
+			gpios = <&pca0 7 GPIO_ACTIVE_LOW>;
+			linux,code = <7>;
+		};
+
+		event-fan1-presence {
+			label = "fan1-presence";
+			gpios = <&pca0 8 GPIO_ACTIVE_LOW>;
+			linux,code = <8>;
+		};
+
+		event-fan2-presence {
+			label = "fan2-presence";
+			gpios = <&pca0 9 GPIO_ACTIVE_LOW>;
+			linux,code = <9>;
+		};
+
+		event-fan3-presence {
+			label = "fan3-presence";
+			gpios = <&pca0 10 GPIO_ACTIVE_LOW>;
+			linux,code = <10>;
+		};
+
+		event-fan4-presence {
+			label = "fan4-presence";
+			gpios = <&pca0 11 GPIO_ACTIVE_LOW>;
+			linux,code = <11>;
+		};
+
+		event-fan5-presence {
+			label = "fan5-presence";
+			gpios = <&pca0 12 GPIO_ACTIVE_LOW>;
+			linux,code = <12>;
+		};
+
+		event-fan6-presence {
+			label = "fan6-presence";
+			gpios = <&pca0 13 GPIO_ACTIVE_LOW>;
+			linux,code = <13>;
+		};
+	};
+
+	iio-hwmon {
+		compatible = "iio-hwmon";
+		io-channels = <&adc1 7>;
 	};
 };
 
@@ -92,7 +168,7 @@
 &gpio0 {
 	gpio-line-names =
 	/*A0-A7*/	"","","","","","","","",
-	/*B0-B7*/	"","","","","","","","",
+	/*B0-B7*/	"","","","","bmc-tpm-reset","","","",
 	/*C0-C7*/	"","","","","","","","",
 	/*D0-D7*/	"","","","","","","","",
 	/*E0-E7*/	"","","","","","","","",
@@ -102,17 +178,17 @@
 	/*I0-I7*/	"","","","","","","","",
 	/*J0-J7*/	"","","","","","","","",
 	/*K0-K7*/	"","","","","","","","",
-	/*L0-L7*/	"","","","","","","","",
+	/*L0-L7*/	"","","","","","","","bmc-ready",
 	/*M0-M7*/	"","","","","","","","",
 	/*N0-N7*/	"","","","","","","","",
 	/*O0-O7*/	"","","","","","","","",
-	/*P0-P7*/	"","","","","","","","",
+	/*P0-P7*/	"","","","","","","","bmc-hb",
 	/*Q0-Q7*/	"","","","","","","","",
 	/*R0-R7*/	"","","","","","","","",
-	/*S0-S7*/	"","","","","","","","",
+	/*S0-S7*/	"","","","","","","rear-enc-fault0","rear-enc-id0",
 	/*T0-T7*/	"","","","","","","","",
 	/*U0-U7*/	"","","","","","","","",
-	/*V0-V7*/	"","","","power-chassis-control","","","","",
+	/*V0-V7*/	"","rtc-battery-voltage-read-enable","","power-chassis-control","","","","",
 	/*W0-W7*/	"","","","","","","","",
 	/*X0-X7*/	"","power-chassis-good","","","","","","",
 	/*Y0-Y7*/	"","","","","","","","",
@@ -362,7 +438,7 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names = "", "", "", "",
+				gpio-line-names =
 					"PLUG_DETECT_PCIE_J101_N",
 					"PLUG_DETECT_PCIE_J102_N",
 					"PLUG_DETECT_PCIE_J103_N",
@@ -389,7 +465,7 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names = "", "", "", "",
+				gpio-line-names =
 					"PLUG_DETECT_PCIE_J109_N",
 					"PLUG_DETECT_PCIE_J110_N",
 					"PLUG_DETECT_PCIE_J111_N",
@@ -416,7 +492,7 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names = "", "", "", "",
+				gpio-line-names =
 					"SW1_BOOTRCVRYB1_N",
 					"SW1_BOOTRCVRYB0_N",
 					"SW2_BOOTRCVRYB1_N",
@@ -643,7 +719,7 @@
 		gpio-controller;
 		#gpio-cells = <2>;
 
-		gpio-line-names = "", "", "", "",
+		gpio-line-names =
 			"NVMED0_RESET_N",
 			"NVMED1_RESET_N",
 			"NVMED2_RESET_N",
@@ -661,7 +737,7 @@
 			"FAN_CNTRLR1_RST_N";
 	};
 
-	pca9539@77 {
+	pca0: pca9539@77 {
 		compatible = "nxp,pca9539";
 		reg = <0x77>;
 		#address-cells = <1>;
@@ -669,23 +745,6 @@
 
 		gpio-controller;
 		#gpio-cells = <2>;
-
-		gpio-line-names = "", "", "", "",
-			"PE_NVMED0_EXP_PRSNT_N",
-			"PE_NVMED1_EXP_PRSNT_N",
-			"PE_NVMED2_EXP_PRSNT_N",
-			"PE_NVMED3_EXP_PRSNT_N",
-			"LED_FAULT_NVMED0",
-			"LED_FAULT_NVMED1",
-			"LED_FAULT_NVMED2",
-			"LED_FAULT_NVMED3",
-			"FAN0_PRESENCE_R_N",
-			"FAN1_PRESENCE_R_N",
-			"FAN2_PRESENCE_R_N",
-			"FAN3_PRESENCE_R_N",
-			"FAN4_PRESENCE_R_N",
-			"FAN5_PRESENCE_N",
-			"FAN6_PRESENCE_N";
 	};
 };
 
@@ -799,7 +858,7 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names = "", "", "", "",
+				gpio-line-names =
 					"EFUSE_12V_SLOTS_N",
 					"EFUSE_3P3V_SLOTS_N",
 					"",
@@ -949,7 +1008,7 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names = "", "", "", "",
+				gpio-line-names =
 					"NIC1_PERST_N",
 					"BMC_PERST_N",
 					"RST_M2_SSD1_2_PERST_N",
