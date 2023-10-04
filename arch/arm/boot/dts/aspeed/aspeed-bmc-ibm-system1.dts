@@ -281,6 +281,11 @@
 		compatible = "atmel,24c64";
 		reg = <0x50>;
 	};
+
+        max8952@60 {
+                compatible = "maxim,max8952";
+                reg = <0x60>;
+        };
 };
 
 &i2c1 {
@@ -544,6 +549,32 @@
 	};
 };
 
+&i2c5 {
+        status = "okay";
+
+
+        ir38263@10 {
+                compatible = "infineon,ir38263";
+                reg = <0x10>;
+        };
+
+        ir38263@11 {
+                compatible = "infineon,ir38263";
+                reg = <0x11>;
+        };
+
+        ir38263@12 {
+                compatible = "infineon,ir38263";
+                reg = <0x12>;
+        };
+
+        ir38060@13 {
+                compatible = "infineon,ir38060";
+                reg = <0x13>;
+        };
+
+};
+
 &i2c6 {
 	status = "okay";
 
@@ -775,24 +806,49 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <2>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c7mux0chn3: i2c@3 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <3>;
+
+			mp2973@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c7mux0chn4: i2c@4 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <4>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
 		};
 
 		i2c7mux0chn5: i2c@5 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <5>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
 		};
 
 		i2c7mux0chn6: i2c@6 {
@@ -824,12 +880,22 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <0>;
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c8mux0chn1: i2c@1 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <1>;
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c8mux0chn2: i2c@2 {
@@ -894,8 +960,32 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <7>;
+
+			ir38060@10 {
+				compatible = "infineon,ir38060";
+				reg = <0x10>;
+			};
 		};
 	};
+};
+
+&i2c9 {
+	status = "okay";
+
+        ir38263@10 {
+                compatible = "infineon,ir38263";
+                reg = <0x10>;
+        };
+
+        ir38263@11 {
+                compatible = "infineon,ir38263";
+                reg = <0x11>;
+        };
+
+        max8952@60 {
+                compatible = "maxim,max8952";
+                reg = <0x60>;
+        };
 };
 
 &i2c14 {
@@ -925,24 +1015,49 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <2>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c14mux0chn3: i2c@3 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <3>;
+
+			mp2973@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c14mux0chn4: i2c@4 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <4>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
 		};
 
 		i2c14mux0chn5: i2c@5 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <5>;
+
+			tda38640@10 {
+				compatible = "infineon,tda38640";
+				reg = <0x10>;
+			};
 		};
 
 		i2c14mux0chn6: i2c@6 {
@@ -974,12 +1089,22 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <0>;
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c15mux0chn1: i2c@1 {
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <1>;
+
+			mp2971@58 {
+				compatible = "mps,mp2975";
+				reg = <0x58>;
+			};
 		};
 
 		i2c15mux0chn2: i2c@2 {
@@ -1044,6 +1169,11 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <7>;
+
+			ir38060@10 {
+				compatible = "infineon,ir38060";
+				reg = <0x10>;
+			};
 		};
 	};
 };
