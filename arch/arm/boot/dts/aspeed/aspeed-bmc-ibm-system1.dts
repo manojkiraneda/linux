@@ -26,6 +26,11 @@
 		#size-cells = <1>;
 		ranges;
 
+		event_log: tcg_event_log@b3d00000 {
+			no-map;
+			reg = <0xb3d00000 0x100000>;
+		};
+
 		ramoops@b3e00000 {
 			compatible = "ramoops";
 			reg = <0xb3e00000 0x200000>; /* 16 * (4 * 0x8000) */
@@ -147,14 +152,34 @@
 	};
 };
 
+&adc0 {
+	status = "okay";
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_adc0_default
+		&pinctrl_adc1_default
+		&pinctrl_adc2_default
+		&pinctrl_adc3_default
+		&pinctrl_adc4_default
+		&pinctrl_adc5_default
+		&pinctrl_adc6_default
+		&pinctrl_adc7_default>;
+};
+
 &adc1 {
 	status = "okay";
+	aspeed,battery-sensing;
+
 	aspeed,int-vref-microvolt = <2500000>;
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-		&pinctrl_adc10_default &pinctrl_adc11_default
-		&pinctrl_adc12_default &pinctrl_adc13_default
-		&pinctrl_adc14_default &pinctrl_adc15_default>;
+	pinctrl-0 = <&pinctrl_adc8_default
+		&pinctrl_adc9_default
+		&pinctrl_adc10_default
+		&pinctrl_adc11_default
+		&pinctrl_adc12_default
+		&pinctrl_adc13_default
+		&pinctrl_adc14_default
+		&pinctrl_adc15_default>;
 };
 
 &ehci1 {
@@ -552,7 +577,6 @@
 &i2c5 {
         status = "okay";
 
-
         ir38263@10 {
                 compatible = "infineon,ir38263";
                 reg = <0x10>;
@@ -573,6 +597,10 @@
                 reg = <0x13>;
         };
 
+        max5970@3a {
+                compatible = "maxim,max5970";
+                reg = <0x3a>;
+        };
 };
 
 &i2c6 {
@@ -954,6 +982,21 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <6>;
+
+			tmp423a@4c {
+				compatible = "ti,tmp423";
+				reg = <0x4c>;
+			};
+
+			tmp423a@4d {
+				compatible = "ti,tmp423";
+				reg = <0x4d>;
+			};
+
+			tmp423a@4e {
+				compatible = "ti,tmp423";
+				reg = <0x4e>;
+			};
 		};
 
 		i2c8mux0chn7: i2c@7 {
@@ -986,6 +1029,21 @@
                 compatible = "maxim,max8952";
                 reg = <0x60>;
         };
+};
+
+&i2c13 {
+	status = "okay";
+
+	tpm@2e {
+		compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
+		reg = <0x2e>;
+		memory-region = <&event_log>;
+	};
+
+	eeprom@50 {
+		compatible = "atmel,24c64";
+		reg = <0x50>;
+	};
 };
 
 &i2c14 {
@@ -1163,6 +1221,21 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reg = <6>;
+
+			tmp423a@4c {
+				compatible = "ti,tmp423";
+				reg = <0x4c>;
+			};
+
+			tmp423a@4d {
+				compatible = "ti,tmp423";
+				reg = <0x4d>;
+			};
+
+			tmp423a@4e {
+				compatible = "ti,tmp423";
+				reg = <0x4e>;
+			};
 		};
 
 		i2c15mux0chn7: i2c@7 {
