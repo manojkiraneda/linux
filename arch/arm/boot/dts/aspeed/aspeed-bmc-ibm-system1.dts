@@ -79,70 +79,70 @@
 		compatible = "gpio-keys-polled";
 		poll-interval = <1000>;
 
+		event-nvme0-presence {
+			label = "nvme0-presence";
+			gpios = <&pca1 0 GPIO_ACTIVE_LOW>;
+			linux,code = <0>;
+		};
+
 		event-nvme1-presence {
 			label = "nvme1-presence";
-			gpios = <&pca0 0 GPIO_ACTIVE_LOW>;
-			linux,code = <0>;
+			gpios = <&pca1 1 GPIO_ACTIVE_LOW>;
+			linux,code = <1>;
 		};
 
 		event-nvme2-presence {
 			label = "nvme2-presence";
-			gpios = <&pca0 1 GPIO_ACTIVE_LOW>;
-			linux,code = <1>;
+			gpios = <&pca1 2 GPIO_ACTIVE_LOW>;
+			linux,code = <2>;
 		};
 
 		event-nvme3-presence {
 			label = "nvme3-presence";
-			gpios = <&pca0 2 GPIO_ACTIVE_LOW>;
-			linux,code = <2>;
-		};
-
-		event-nvme4-presence {
-			label = "nvme4-presence";
-			gpios = <&pca0 3 GPIO_ACTIVE_LOW>;
+			gpios = <&pca1 3 GPIO_ACTIVE_LOW>;
 			linux,code = <3>;
 		};
 
 		event-fan0-presence {
 			label = "fan0-presence";
-			gpios = <&pca0 7 GPIO_ACTIVE_LOW>;
-			linux,code = <7>;
+			gpios = <&pca1 8 GPIO_ACTIVE_LOW>;
+			linux,code = <8>;
 		};
 
 		event-fan1-presence {
 			label = "fan1-presence";
-			gpios = <&pca0 8 GPIO_ACTIVE_LOW>;
-			linux,code = <8>;
+			gpios = <&pca1 9 GPIO_ACTIVE_LOW>;
+			linux,code = <9>;
 		};
 
 		event-fan2-presence {
 			label = "fan2-presence";
-			gpios = <&pca0 9 GPIO_ACTIVE_LOW>;
-			linux,code = <9>;
+			gpios = <&pca1 10 GPIO_ACTIVE_LOW>;
+			linux,code = <10>;
 		};
 
 		event-fan3-presence {
 			label = "fan3-presence";
-			gpios = <&pca0 10 GPIO_ACTIVE_LOW>;
-			linux,code = <10>;
+			gpios = <&pca1 11 GPIO_ACTIVE_LOW>;
+			linux,code = <11>;
 		};
 
 		event-fan4-presence {
 			label = "fan4-presence";
-			gpios = <&pca0 11 GPIO_ACTIVE_LOW>;
-			linux,code = <11>;
+			gpios = <&pca1 12 GPIO_ACTIVE_LOW>;
+			linux,code = <12>;
 		};
 
 		event-fan5-presence {
 			label = "fan5-presence";
-			gpios = <&pca0 12 GPIO_ACTIVE_LOW>;
-			linux,code = <12>;
+			gpios = <&pca1 13 GPIO_ACTIVE_LOW>;
+			linux,code = <13>;
 		};
 
 		event-fan6-presence {
 			label = "fan6-presence";
-			gpios = <&pca0 13 GPIO_ACTIVE_LOW>;
-			linux,code = <13>;
+			gpios = <&pca1 14 GPIO_ACTIVE_LOW>;
+			linux,code = <14>;
 		};
 	};
 
@@ -879,7 +879,7 @@
 		};
 	};
 
-	pca9539@74 {
+	pca0: pca9539@74 {
 		compatible = "nxp,pca9539";
 		reg = <0x74>;
 		#address-cells = <1>;
@@ -888,25 +888,64 @@
 		gpio-controller;
 		#gpio-cells = <2>;
 
-		gpio-line-names =
-			"NVMED0_RESET_N",
-			"NVMED1_RESET_N",
-			"NVMED2_RESET_N",
-			"NVMED3_RESET_N",
-			"",
-			"FAN0_FLT_LED_R_N",
-			"FAN1_FLT_LED_R_N",
-			"FAN2_FLT_LED_R_N",
-			"FAN3_FLT_LED_R_N",
-			"FAN4_FLT_LED_R_N",
-			"FAN5_FLT_LED_R_N",
-			"FAN6_FLT_LED_R_N",
-			"",
-			"FAN_CNTRLR0_RST_N",
-			"FAN_CNTRLR1_RST_N";
+		led@5 {
+			label = "fan0-fault-led";
+			reg = <5>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@6 {
+			label = "fan1-fault-led";
+			reg = <6>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@7 {
+			label = "fan2-fault-led";
+			reg = <7>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@8 {
+			label = "fan3-fault-led";
+			reg = <8>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@9 {
+			label = "fan4-fault-led";
+			reg = <9>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@10 {
+			label = "fan5-fault-led";
+			reg = <10>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@11 {
+			label = "fan6-fault-led";
+			reg = <11>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
 	};
 
-	pca0: pca9539@77 {
+	pca1: pca9539@77 {
 		compatible = "nxp,pca9539";
 		reg = <0x77>;
 		#address-cells = <1>;
@@ -914,6 +953,38 @@
 
 		gpio-controller;
 		#gpio-cells = <2>;
+
+		led@4 {
+			label = "nvmed0-fault-led";
+			reg = <4>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@5 {
+			label = "nvmed1-fault-led";
+			reg = <5>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@6 {
+			label = "nvmed2-fault-led";
+			reg = <6>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
+
+		led@7 {
+			label = "nvmed3-fault-led";
+			reg = <7>;
+			retain-state-shutdown;
+			default-state = "keep";
+			type = <PCA955X_TYPE_LED>;
+		};
 	};
 };
 
@@ -1053,32 +1124,134 @@
 			#size-cells = <0>;
 			reg = <4>;
 
-			pca9539@75 {
-				compatible = "nxp,pca9539";
-				reg = <0x75>;
+			pca9552@61 {
+				compatible = "nxp,pca9552";
+				reg = <0x61>;
 				#address-cells = <1>;
 				#size-cells = <0>;
 
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names =
-					"EFUSE_12V_SLOTS_N",
-					"EFUSE_3P3V_SLOTS_N",
-					"",
-					"NIC2_PERST_N",
-					"PCIE_J109_PERST_N",
-					"PCIE_J110_PERST_N",
-					"PCIE_J111_PERST_N",
-					"PCIE_J112_PERST_N",
-					"PCIE_J113_PERST_N",
-					"PCIE_J114_PERST_N",
-					"PCIE_J115_PERST_N",
-					"PCIE_J116_PERST_N",
-					"PV_CP1_P_SW2STK4_PERST_N",
-					"PV_CP1_P_SW2STK5_PERST_N",
-					"PE_CP_P_DRV2_PERST1_B",
-					"PE_CP_P_DRV3_PERST1_B";
+				led@0 {
+					label = "efuse-12v-slots";
+					reg = <0>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@1 {
+					label = "efuse-3p3v-slot";
+					reg = <1>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@3 {
+					label = "nic2-pert";
+					reg = <3>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@4 {
+					label = "pcie-perst9";
+					reg = <4>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@5 {
+					label = "pcie-perst10";
+					reg = <5>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@6 {
+					label = "pcie-perst11";
+					reg = <6>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@7 {
+					label = "pcie-perst12";
+					reg = <7>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@8 {
+					label = "pcie-perst13";
+					reg = <8>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@9 {
+					label = "pcie-perst14";
+					reg = <9>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@10 {
+					label = "pcie-perst15";
+					reg = <10>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@11 {
+					label = "pcie-perst16";
+					reg = <11>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@12 {
+					label = "PV-cp1-sw1stk4-perst";
+					reg = <12>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@13 {
+					label = "PV-cp1-sw1stk5-perst";
+					reg = <13>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@14 {
+					label = "pe-cp-drv2-perst";
+					reg = <14>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@15 {
+					label = "pe-cp-drv3-perst";
+					reg = <15>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
 			};
 		};
 
@@ -1304,32 +1477,142 @@
 			#size-cells = <0>;
 			reg = <4>;
 
-			pca9539@74 {
-				compatible = "nxp,pca9539";
-				reg = <0x74>;
+			pca9552@60 {
+				compatible = "nxp,pca9552";
+				reg = <0x60>;
 				#address-cells = <1>;
 				#size-cells = <0>;
 
 				gpio-controller;
 				#gpio-cells = <2>;
 
-				gpio-line-names =
-					"NIC1_PERST_N",
-					"BMC_PERST_N",
-					"RST_M2_SSD1_2_PERST_N",
-					"PCIE_J101_PERST_N",
-					"PCIE_J102_PERST_N",
-					"PCIE_J103_PERST_N",
-					"PCIE_J104_PERST_N",
-					"PCIE_J105_PERST_N",
-					"PCIE_J106_PERST_N",
-					"PCIE_J107_PERST_N",
-					"PCIE_J108_PERST_N",
-					"PV_CP0_P_SW1STK4_PERST_N",
-					"PV_CP0_P_SW1STK5_PERST_N",
-					"PE_CP_P_DRV0_PERST1_B",
-					"PE_CP_P_DRV1_PERST1_B",
-					"LOM_PERST_N";
+				led@0 {
+					label = "nic1-perst";
+					reg = <0>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@1 {
+					label = "bmc-perst";
+					reg = <1>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@2 {
+					label = "reset-M2-SSD1-2-perst";
+					reg = <2>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@3 {
+					label = "pcie-perst1";
+					reg = <3>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@4 {
+					label = "pcie-perst2";
+					reg = <4>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@5 {
+					label = "pcie-perst3";
+					reg = <5>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@6 {
+					label = "pcie-perst4";
+					reg = <6>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@7 {
+					label = "pcie-perst5";
+					reg = <7>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@8 {
+					label = "pcie-perst6";
+					reg = <8>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@9 {
+					label = "pcie-perst7";
+					reg = <9>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@10 {
+					label = "pcie-perst8";
+					reg = <10>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@11 {
+					label = "PV-cp0-sw1stk4-perst";
+					reg = <11>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@12 {
+					label = "PV-cp0-sw1stk5-perst";
+					reg = <12>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@13 {
+					label = "pe-cp-drv0-perst";
+					reg = <13>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@14 {
+					label = "pe-cp-drv1-perst";
+					reg = <14>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
+
+				led@15 {
+					label = "lom-perst";
+					reg = <15>;
+					retain-state-shutdown;
+					default-state = "keep";
+					type = <PCA955X_TYPE_LED>;
+				};
 			};
 		};
 
