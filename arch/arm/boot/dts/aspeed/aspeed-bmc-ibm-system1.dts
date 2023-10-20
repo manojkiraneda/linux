@@ -541,6 +541,10 @@
 	};
 };
 
+&i2c2 {
+	status = "okay";
+};
+
 &i2c3 {
 	status = "okay";
 
@@ -682,6 +686,10 @@
 			reg = <7>;
 		};
 	};
+};
+
+&i2c4 {
+	status = "okay";
 };
 
 &i2c5 {
@@ -1324,6 +1332,10 @@
 		regulator-always-on;
 		regulator-boot-on;
         };
+};
+
+&i2c12 {
+	status = "okay";
 };
 
 &i2c13 {
