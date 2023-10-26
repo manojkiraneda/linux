@@ -819,6 +819,24 @@
 			reg = <1>;
 			tach-pulses = <2>;
 		};
+
+		fan2: fan@2 {
+			compatible = "pmbus-fan";
+			reg = <2>;
+			tach-pulses = <2>;
+		};
+
+		fan3: fan@3 {
+			compatible = "pmbus-fan";
+			reg = <3>;
+			tach-pulses = <2>;
+		};
+
+		fan4: fan@4 {
+			compatible = "pmbus-fan";
+			reg = <4>;
+			tach-pulses = <2>;
+		};
 	};
 
 	eeprom@55 {
@@ -832,15 +850,15 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		fan2: fan@2 {
+		fan5: fan@5 {
 			compatible = "pmbus-fan";
-			reg = <2>;
+			reg = <5>;
 			tach-pulses = <2>;
 		};
 
-		fan3: fan@3 {
+		fan6: fan@6 {
 			compatible = "pmbus-fan";
-			reg = <3>;
+			reg = <6>;
 			tach-pulses = <2>;
 		};
 	};
