@@ -140,67 +140,91 @@
 
 		event-nvme0-presence {
 			label = "nvme0-presence";
-			gpios = <&pca1 0 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 0 GPIO_ACTIVE_LOW>;
 			linux,code = <0>;
 		};
 
 		event-nvme1-presence {
 			label = "nvme1-presence";
-			gpios = <&pca1 1 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 1 GPIO_ACTIVE_LOW>;
 			linux,code = <1>;
 		};
 
 		event-nvme2-presence {
 			label = "nvme2-presence";
-			gpios = <&pca1 2 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 2 GPIO_ACTIVE_LOW>;
 			linux,code = <2>;
 		};
 
 		event-nvme3-presence {
 			label = "nvme3-presence";
-			gpios = <&pca1 3 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 3 GPIO_ACTIVE_LOW>;
 			linux,code = <3>;
 		};
 
 		event-fan0-presence {
 			label = "fan0-presence";
-			gpios = <&pca1 8 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 8 GPIO_ACTIVE_LOW>;
 			linux,code = <8>;
 		};
 
 		event-fan1-presence {
 			label = "fan1-presence";
-			gpios = <&pca1 9 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 9 GPIO_ACTIVE_LOW>;
 			linux,code = <9>;
 		};
 
 		event-fan2-presence {
 			label = "fan2-presence";
-			gpios = <&pca1 10 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 10 GPIO_ACTIVE_LOW>;
 			linux,code = <10>;
 		};
 
 		event-fan3-presence {
 			label = "fan3-presence";
-			gpios = <&pca1 11 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 11 GPIO_ACTIVE_LOW>;
 			linux,code = <11>;
 		};
 
 		event-fan4-presence {
 			label = "fan4-presence";
-			gpios = <&pca1 12 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 12 GPIO_ACTIVE_LOW>;
 			linux,code = <12>;
 		};
 
 		event-fan5-presence {
 			label = "fan5-presence";
-			gpios = <&pca1 13 GPIO_ACTIVE_LOW>;
+			gpios = <&pca4 13 GPIO_ACTIVE_LOW>;
 			linux,code = <13>;
 		};
 
 		event-fan6-presence {
 			label = "fan6-presence";
+			gpios = <&pca4 14 GPIO_ACTIVE_LOW>;
+			linux,code = <14>;
+		};
+
+		event-ps0-presence {
+			label = "presence-ps0";
+			gpios = <&pca1 13 GPIO_ACTIVE_LOW>;
+			linux,code = <13>;
+		};
+
+		event-ps1-presence {
+			label = "presence-ps1";
 			gpios = <&pca1 14 GPIO_ACTIVE_LOW>;
+			linux,code = <14>;
+		};
+
+		event-ps2-presence {
+			label = "presence-ps2";
+			gpios = <&pca0 13 GPIO_ACTIVE_LOW>;
+			linux,code = <13>;
+		};
+
+		event-ps3-presence {
+			label = "presence-ps3";
+			gpios = <&pca0 14 GPIO_ACTIVE_LOW>;
 			linux,code = <14>;
 		};
 	};
@@ -651,7 +675,7 @@
 			#size-cells = <0>;
 			reg = <2>;
 
-			pca9539@74 {
+			pca0: pca9539@74 {
 				compatible = "nxp,pca9539";
 				reg = <0x74>;
 				#address-cells = <1>;
@@ -659,26 +683,9 @@
 
 				gpio-controller;
 				#gpio-cells = <2>;
-
-				gpio-line-names =
-					"PLUG_DETECT_PCIE_J101_N",
-					"PLUG_DETECT_PCIE_J102_N",
-					"PLUG_DETECT_PCIE_J103_N",
-					"PLUG_DETECT_PCIE_J104_N",
-					"PLUG_DETECT_PCIE_J105_N",
-					"PLUG_DETECT_PCIE_J106_N",
-					"PLUG_DETECT_PCIE_J107_N",
-					"PLUG_DETECT_PCIE_J108_N",
-					"PLUG_DETECT_M2_SSD1_N",
-					"PLUG_DETECT_NIC1_N",
-					"SEL_SMB_DIMM_CPU0",
-					"PSU3_PRESENT_N",
-					"PSU4_PRESENT_N",
-					"", "",
-					"PWRBRD_PLUG_DETECT2_N";
 			};
 
-			pca9539@75 {
+			pca1: pca9539@75 {
 				compatible = "nxp,pca9539";
 				reg = <0x75>;
 				#address-cells = <1>;
@@ -686,26 +693,9 @@
 
 				gpio-controller;
 				#gpio-cells = <2>;
-
-				gpio-line-names =
-					"PLUG_DETECT_PCIE_J109_N",
-					"PLUG_DETECT_PCIE_J110_N",
-					"PLUG_DETECT_PCIE_J111_N",
-					"PLUG_DETECT_PCIE_J112_N",
-					"PLUG_DETECT_PCIE_J113_N",
-					"PLUG_DETECT_PCIE_J114_N",
-					"PLUG_DETECT_PCIE_J115_N",
-					"PLUG_DETECT_PCIE_J116_N",
-					"PLUG_DETECT_M2_SSD2_N",
-					"PLUG_DETECT_NIC2_N",
-					"SEL_SMB_DIMM_CPU1",
-					"PSU1_PRESENT_N",
-					"PSU2_PRESENT_N",
-					"", "",
-					"PWRBRD_PLUG_DETECT1_N";
 			};
 
-			pca9539@76 {
+			pca2: pca9539@76 {
 				compatible = "nxp,pca9539";
 				reg = <0x76>;
 				#address-cells = <1>;
@@ -983,7 +973,7 @@
 		};
 	};
 
-	pca0: pca9539@74 {
+	pca3: pca9539@74 {
 		compatible = "nxp,pca9539";
 		reg = <0x74>;
 		#address-cells = <1>;
@@ -1049,7 +1039,7 @@
 		};
 	};
 
-	pca1: pca9539@77 {
+	pca4: pca9539@77 {
 		compatible = "nxp,pca9539";
 		reg = <0x77>;
 		#address-cells = <1>;
