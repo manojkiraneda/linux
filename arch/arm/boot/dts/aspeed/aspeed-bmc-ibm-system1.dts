@@ -683,6 +683,24 @@
 
 				gpio-controller;
 				#gpio-cells = <2>;
+
+				gpio-line-names =
+					"PLUG_DETECT_PCIE_J101_N",
+					"PLUG_DETECT_PCIE_J102_N",
+					"PLUG_DETECT_PCIE_J103_N",
+					"PLUG_DETECT_PCIE_J104_N",
+					"PLUG_DETECT_PCIE_J105_N",
+					"PLUG_DETECT_PCIE_J106_N",
+					"PLUG_DETECT_PCIE_J107_N",
+					"PLUG_DETECT_PCIE_J108_N",
+					"", "", "",
+					"PLUG_DETECT_M2_SSD1_N",
+					"PLUG_DETECT_NIC1_N",
+					"SEL_SMB_DIMM_CPU0",
+					"presence-ps2",
+					"presence-ps3",
+					"", "",
+					"PWRBRD_PLUG_DETECT2_N";
 			};
 
 			pca1: pca9539@75 {
@@ -693,6 +711,24 @@
 
 				gpio-controller;
 				#gpio-cells = <2>;
+
+				gpio-line-names =
+					"PLUG_DETECT_PCIE_J109_N",
+					"PLUG_DETECT_PCIE_J110_N",
+					"PLUG_DETECT_PCIE_J111_N",
+					"PLUG_DETECT_PCIE_J112_N",
+					"PLUG_DETECT_PCIE_J113_N",
+					"PLUG_DETECT_PCIE_J114_N",
+					"PLUG_DETECT_PCIE_J115_N",
+					"PLUG_DETECT_PCIE_J116_N",
+					"", "", "",
+					"PLUG_DETECT_M2_SSD2_N",
+					"PLUG_DETECT_NIC2_N",
+					"SEL_SMB_DIMM_CPU1",
+					"presence-ps0",
+					"presence-ps1",
+					"", "",
+					"PWRBRD_PLUG_DETECT1_N";
 			};
 
 			pca2: pca9539@76 {
