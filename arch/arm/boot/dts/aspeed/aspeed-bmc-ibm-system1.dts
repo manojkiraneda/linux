@@ -885,9 +885,9 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		fan5: fan@5 {
+		fan5: fan@0 {
 			compatible = "pmbus-fan";
-			reg = <5>;
+			reg = <0>;
 			tach-pulses = <2>;
 			maxim,fan-rotor-input = "tach";
 			maxim,fan-pwm-freq = <25000>;
@@ -898,9 +898,9 @@
 			maxim,fan-fault-pin-mon;
 		};
 
-		fan6: fan@6 {
+		fan6: fan@1 {
 			compatible = "pmbus-fan";
-			reg = <6>;
+			reg = <1>;
 			tach-pulses = <2>;
 			maxim,fan-rotor-input = "tach";
 			maxim,fan-pwm-freq = <25000>;
