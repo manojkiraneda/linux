@@ -203,30 +203,6 @@
 			gpios = <&pca4 14 GPIO_ACTIVE_LOW>;
 			linux,code = <14>;
 		};
-
-		event-ps0-presence {
-			label = "presence-ps0";
-			gpios = <&pca1 11 GPIO_ACTIVE_LOW>;
-			linux,code = <11>;
-		};
-
-		event-ps1-presence {
-			label = "presence-ps1";
-			gpios = <&pca1 12 GPIO_ACTIVE_LOW>;
-			linux,code = <12>;
-		};
-
-		event-ps2-presence {
-			label = "presence-ps2";
-			gpios = <&pca0 11 GPIO_ACTIVE_LOW>;
-			linux,code = <11>;
-		};
-
-		event-ps3-presence {
-			label = "presence-ps3";
-			gpios = <&pca0 12 GPIO_ACTIVE_LOW>;
-			linux,code = <12>;
-		};
 	};
 
 	iio-hwmon {
