@@ -132,6 +132,50 @@
 		rear-enc-id0 {
 			gpios = <&gpio0 ASPEED_GPIO(S, 7) GPIO_ACTIVE_HIGH>;
 		};
+
+		fan0-fault-led {
+			gpios = <&pca3 5 GPIO_ACTIVE_LOW>;
+		};
+
+		fan1-fault-led {
+			gpios = <&pca3 6 GPIO_ACTIVE_LOW>;
+		};
+
+		fan2-fault-led {
+			gpios = <&pca3 7 GPIO_ACTIVE_LOW>;
+		};
+
+		fan3-fault-led {
+			gpios = <&pca3 8 GPIO_ACTIVE_LOW>;
+		};
+
+		fan4-fault-led {
+			gpios = <&pca3 9 GPIO_ACTIVE_LOW>;
+		};
+
+		fan5-fault-led {
+			gpios = <&pca3 10 GPIO_ACTIVE_LOW>;
+		};
+
+		fan6-fault-led {
+			gpios = <&pca3 11 GPIO_ACTIVE_LOW>;
+		};
+
+		nvmed0-fault-led {
+			gpios = <&pca4 4 GPIO_ACTIVE_HIGH>;
+		};
+
+		nvmed1-fault-led {
+			gpios = <&pca4 5 GPIO_ACTIVE_HIGH>;
+		};
+
+		nvmed2-fault-led {
+			gpios = <&pca4 6 GPIO_ACTIVE_HIGH>;
+		};
+
+		nvmed3-fault-led {
+			gpios = <&pca4 7 GPIO_ACTIVE_HIGH>;
+		};
 	};
 
 	gpio-keys-polled {
@@ -1040,62 +1084,6 @@
 
 		gpio-controller;
 		#gpio-cells = <2>;
-
-		led@5 {
-			label = "fan0-fault-led";
-			reg = <5>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@6 {
-			label = "fan1-fault-led";
-			reg = <6>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@7 {
-			label = "fan2-fault-led";
-			reg = <7>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@8 {
-			label = "fan3-fault-led";
-			reg = <8>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@9 {
-			label = "fan4-fault-led";
-			reg = <9>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@10 {
-			label = "fan5-fault-led";
-			reg = <10>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@11 {
-			label = "fan6-fault-led";
-			reg = <11>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
 	};
 
 	pca4: pca9539@77 {
@@ -1106,38 +1094,6 @@
 
 		gpio-controller;
 		#gpio-cells = <2>;
-
-		led@4 {
-			label = "nvmed0-fault-led";
-			reg = <4>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@5 {
-			label = "nvmed1-fault-led";
-			reg = <5>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@6 {
-			label = "nvmed2-fault-led";
-			reg = <6>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
-
-		led@7 {
-			label = "nvmed3-fault-led";
-			reg = <7>;
-			retain-state-shutdown;
-			default-state = "keep";
-			type = <PCA955X_TYPE_LED>;
-		};
 	};
 };
 
