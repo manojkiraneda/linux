@@ -205,6 +205,48 @@
 			gpios = <&pca4 3 GPIO_ACTIVE_LOW>;
 			linux,code = <3>;
 		};
+
+		event-fan0-presence {
+			label = "FAN0_PRESENCE_R_N";
+			gpios = <&pca4 8 GPIO_ACTIVE_LOW>;
+			linux,code = <8>;
+		};
+
+		event-fan1-presence {
+			label = "FAN1_PRESENCE_R_N";
+			gpios = <&pca4 9 GPIO_ACTIVE_LOW>;
+			linux,code = <9>;
+		};
+
+		event-fan2-presence {
+			label = "FAN2_PRESENCE_R_N";
+			gpios = <&pca4 10 GPIO_ACTIVE_LOW>;
+			linux,code = <10>;
+		};
+
+		event-fan3-presence {
+			label = "FAN3_PRESENCE_R_N";
+			gpios = <&pca4 11 GPIO_ACTIVE_LOW>;
+			linux,code = <11>;
+		};
+
+		event-fan4-presence {
+			label = "FAN4_PRESENCE_R_N";
+			gpios = <&pca4 12 GPIO_ACTIVE_LOW>;
+			linux,code = <12>;
+		};
+
+		event-fan5-presence {
+			label = "FAN5_PRESENCE_N";
+			gpios = <&pca4 13 GPIO_ACTIVE_LOW>;
+			linux,code = <13>;
+		};
+
+		event-fan6-presence {
+			label = "FAN6_PRESENCE_N";
+			gpios = <&pca4 14 GPIO_ACTIVE_LOW>;
+			linux,code = <14>;
+		};
 	};
 
 	iio-hwmon {
